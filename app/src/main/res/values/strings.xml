@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Tutorv3usu</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">START</string>
+    <string name="title_slide1">Friendship</string>
+    <string name="desc_slide1">you can find a large number of people to build up friendship</string>
+    <string name="title_slide2">No Cost</string>
+    <string name="desc_slide2">uMe is completely FREE of cost, no subscription fees.</string>
+    <string name="title_slide3">Chatting</string>
+    <string name="desc_slide3">fully one to one personal chatting system</string>
+    <string name="title_slide4">Secure</string>
+    <string name="desc_slide4">uMe keeps your messages secure</string>
+    <string name="title_activity_agenda">Agenda</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="menu_search">Search</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_contenedor2">Contenedor2</string>
+    <string name="title_activity_inicio_alumno">titulo</string>
+    <string name="tab_text_11">Tab 1</string>
+    <string name="tab_text_22">Tab 2</string>
+
+</resources>

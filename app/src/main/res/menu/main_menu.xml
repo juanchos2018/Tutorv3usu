@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:title="@string/menu_search"
+        android:id="@+id/menu_search1"
+        android:icon="@drawable/ic_search_black_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:title="Salir"
+        android:id="@+id/idsalir"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="modiicar"
+        android:id="@+id/main_logout"
+        app:showAsAction="never"
+        />
+</menu>

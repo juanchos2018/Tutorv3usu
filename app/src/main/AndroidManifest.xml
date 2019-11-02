@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tutorv3usu">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".VistaAlumno.ChatGrupal2"></activity>
+        <activity android:name=".ChatGrupal" />
+        <activity android:name=".VistaTutor.Horario" />
+        <activity android:name=".VistaTutor.DetalleAlumnos" />
+        <activity android:name=".VistaTutor.MiPerfil" />
+        <activity android:name=".VistaAlumno.Stream" />
+        <activity
+            android:name=".VistaAlumno.InicioAlumno"
+            android:label="@string/title_activity_inicio_alumno"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MisDatos" />
+        <activity
+            android:name=".Info.Perfil"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chat.Buscar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chat.Contenedor2"
+            android:label="@string/title_activity_contenedor2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chat.Contenedor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chat.Chat"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".VistaTutor.Agenda"
+            android:label="@string/title_activity_agenda" />
+        <activity android:name=".VistaAlumno.Inicioalumon" />
+        <activity
+            android:name=".VistaTutor.TutorInico"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Intro" />
+        <activity
+            android:name=".Bienvenida"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Login" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize" />
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>

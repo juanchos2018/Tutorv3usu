@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/code1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="5dp"/>
+        <EditText
+            android:id="@+id/idtutulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Titulo Evento"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/user4"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="5dp"/>
+        <Spinner
+            android:id="@+id/idcurso2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="8dp"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/user4"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="5dp"/>
+        <EditText
+            android:id="@+id/idlugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lugar"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/user4"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="5dp"/>
+        <EditText
+            android:id="@+id/idfecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/user4"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="5dp"/>
+        <EditText
+            android:id="@+id/iddescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripcion"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
