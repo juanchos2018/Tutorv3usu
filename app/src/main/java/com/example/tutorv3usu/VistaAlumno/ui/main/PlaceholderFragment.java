@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tutorv3usu.Fragment.ChatsFragment;
+import com.example.tutorv3usu.Fragment.ChatsFragment2;
 import com.example.tutorv3usu.Fragment.RequestsFragment;
 import com.example.tutorv3usu.FragmentAlumno.ChatFragment;
 import com.example.tutorv3usu.FragmentAlumno.ReunionesFragment;
@@ -40,7 +41,7 @@ public class PlaceholderFragment extends Fragment {
 
       switch (index){
           case 1:
-              fragment =new ChatsFragment();
+              fragment =new ChatsFragment2();
               break;
           case 2:
               fragment =new ReunionesFragment();

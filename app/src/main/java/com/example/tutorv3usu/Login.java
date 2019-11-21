@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private DatabaseReference userDatabaseReference;
     public FirebaseUser currentUser;
-    private EditText userEmail, userPassword;
+        private EditText userEmail, userPassword;
     private Button loginButton;
     private ViewPager mViewPager;
     private DatabaseReference reference;
@@ -67,16 +67,17 @@ public class Login extends AppCompatActivity {
         userDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios");
 
 //ESto puse
-        currentUser = mAuth.getCurrentUser();
-        if (currentUser != null){
-            String user_uID = mAuth.getCurrentUser().getUid();
-            userDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(user_uID);
-            Toast.makeText(this, "LLega aqui", Toast.LENGTH_SHORT).show();
-        }
+         /*   currentUser = mAuth.getCurrentUser();
+            if (currentUser != null){
+                String user_uID = mAuth.getCurrentUser().getUid();
+                userDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(user_uID);
+                Toast.makeText(this, "LLega aqui", Toast.LENGTH_SHORT).show();
+            }
+
+          */
+
 
 //hasta qui
-
-
         userEmail = findViewById(R.id.inputEmail);
         userPassword = findViewById(R.id.inputPassword);
         loginButton = findViewById(R.id.loginButton);
@@ -176,10 +177,6 @@ public class Login extends AppCompatActivity {
             });
 
 
-
-
-
-
         } else {
             SweetToast.info(Login.this, "Primero verifica tu correo");
             mAuth.signOut();
@@ -199,7 +196,7 @@ public class Login extends AppCompatActivity {
         if (currentUser != null){
             userDatabaseReference.child("active_now").setValue("true");
             String UID = mAuth.getCurrentUser().getUid();
-            Toast.makeText(this, "Inicaido sesion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Iniciando sesion", Toast.LENGTH_SHORT).show();
 
             reference = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(UID);
             reference.addValueEventListener(new ValueEventListener() {
@@ -209,6 +206,7 @@ public class Login extends AppCompatActivity {
                     if (name.equals("Tutor")){
 
                         Intent intent1= new Intent(Login.this, TutorInico.class);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent1);
                         //   startActivity(intent);
                        /* Intent intent = new Intent(Login.this, TutorInico.class);
@@ -221,6 +219,7 @@ public class Login extends AppCompatActivity {
                     }
                     if (name.equals("Alumno")){
                         Intent intent= new Intent(Login.this, InicioAlumno.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                          startActivity(intent);
                    /*     Intent intent = new Intent(Login.this, Inicioalumon.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -235,9 +234,6 @@ public class Login extends AppCompatActivity {
 
                 }
             });
-
-
-
 
             //     Intent intent= new Intent(Login.this, TutorInico.class);
          //   startActivity(intent);

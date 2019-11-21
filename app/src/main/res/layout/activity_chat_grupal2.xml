@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.tutorv3usu.VistaAlumno.ChatGrupal2">
 
+
     <RelativeLayout
 
         android:layout_width="match_parent"
@@ -30,7 +31,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:onClick="send"
+            android:onClick="send1"
             android:src="@drawable/ic_send"/>
 
 

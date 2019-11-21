@@ -150,7 +150,7 @@ public class RequestsFragment extends Fragment {
                                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                CharSequence options[] =  new CharSequence[]{"Accept Request", "Cancel Request", userName+"'s profile"};
+                                                CharSequence options[] =  new CharSequence[]{"Acceptar", "Cancelar", userName+"'s profile"};
 
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
@@ -189,8 +189,9 @@ public class RequestsFragment extends Fragment {
                                                                                                                                 if (task.isSuccessful()){
                                                                                                                                     // after deleting data
                                                                                                                                     Snackbar snackbar = Snackbar
-                                                                                                                                            .make(view, "This person is now your friend", Snackbar.LENGTH_LONG);
+                                                                                                                                            .make(view, "Esta persona ahora es tu amiga", Snackbar.LENGTH_LONG);
                                                                                                                                     // Changing message text color
+                                                                                                                                    // AQUI ESTA EL ERROR  OTRO DIA AVER SI LO SOLUCIONO WE
                                                                                                                                     View sView = snackbar.getView();
                                                                                                                                     sView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                                                                                                                                     TextView textView = sView.findViewById(R.id.snackbar_text);
@@ -306,7 +307,8 @@ public class RequestsFragment extends Fragment {
                                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                CharSequence options[] =  new CharSequence[]{"Cancel Sent Request", userName+"'s profile"};
+                                                CharSequence options[] =  new CharSequence[]{"\n" +
+                                                        "Cancelar solicitud", userName+"'s profile"};
 
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
@@ -328,7 +330,7 @@ public class RequestsFragment extends Fragment {
                                                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                                                 if (task.isSuccessful()){
                                                                                                     Snackbar snackbar = Snackbar
-                                                                                                            .make(view, "Cancel Sent Request", Snackbar.LENGTH_LONG);
+                                                                                                            .make(view, "Cancelar solicitud", Snackbar.LENGTH_LONG);
                                                                                                     // Changing message text color
                                                                                                     View sView = snackbar.getView();
                                                                                                     sView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -34,6 +35,7 @@ public class Contenedor extends AppCompatActivity {
     private TabsPagerAdapter mTabsPagerAdapter;
 
     //Firebase
+    private Toolbar mToolbar;
     private FirebaseAuth mAuth;
     private DatabaseReference userDatabaseReference;
     public FirebaseUser currentUser;
@@ -46,7 +48,6 @@ public class Contenedor extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         if (currentUser != null){
             String user_uID = mAuth.getCurrentUser().getUid();
-
             userDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(user_uID);
         }
         mViewPager = findViewById(R.id.tabs_pager);
@@ -56,8 +57,31 @@ public class Contenedor extends AppCompatActivity {
         mTabLayout = findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
 
+        mToolbar = findViewById(R.id.main_page_toolbar);
+        setSupportActionBar(mToolbar);
+
+        Toast.makeText(this, "Hola que tal", Toast.LENGTH_SHORT).show();
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main_menu2, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.menu_search2){
+            Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show();
+            Intent intent =  new Intent(Contenedor.this, Buscar.class);
+            startActivity(intent);
+        }
+
+        return true;
+    }
 
 }

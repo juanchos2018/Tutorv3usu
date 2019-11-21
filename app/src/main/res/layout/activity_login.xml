@@ -72,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/loginButton"
                     android:text="Ingresar"
+
                     android:textSize="18sp"
                     android:textAllCaps="false"
                     android:padding="10dp"

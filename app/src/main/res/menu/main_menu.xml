@@ -15,7 +15,7 @@
         app:showAsAction="never"
         />
     <item
-        android:title="modiicar"
+        android:title="perfil"
         android:id="@+id/main_logout"
         app:showAsAction="never"
         />

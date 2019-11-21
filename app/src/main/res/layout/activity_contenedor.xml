@@ -8,14 +8,16 @@
     android:id="@+id/main_activity"
     tools:context="com.example.tutorv3usu.Chat.Contenedor">
 
-
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/main_page_toolbar"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_tabs"
         android:background="@drawable/white_gray_border_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_below="@id/main_page_toolbar"
         android:theme="@style/AppTheme">
 
     </com.google.android.material.tabs.TabLayout>

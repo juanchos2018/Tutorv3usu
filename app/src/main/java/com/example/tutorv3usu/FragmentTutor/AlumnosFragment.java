@@ -1,7 +1,9 @@
 package com.example.tutorv3usu.FragmentTutor;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -64,7 +66,7 @@ public class AlumnosFragment extends Fragment {
     ArrayList<Reuniones> listaReunion;
     AdaptadorReunion adapterreunion;
 
-
+TextView txt1,txt2,txt3,txt4;
     public AlumnosFragment() {
         // Required empty public constructor
     }
@@ -107,7 +109,6 @@ String idtutor;
 
         }
 
-
         return vista;
     }
 
@@ -133,12 +134,33 @@ String idtutor;
                         if (dataSnapshot.exists()){
 
                             final String userName = dataSnapshot.child("nombre").getValue().toString();
+                            final String ape = dataSnapshot.child("apellido").getValue().toString();
 
-                            holder.titulo.setText(userName);
+                            holder.nombre.setText(userName);
+                            holder.apellido=ape;
 
                             holder.itemView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                    LayoutInflater inflater = getActivity().getLayoutInflater();
+                                    View view2 = inflater.inflate(R.layout.dialogo_detalle_alumno, null);
+                                    builder.setTitle("Alumno");
+                                    builder.setView(view2)
+                                            .setNegativeButton("cerrar", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                }
+                                            });
+
+
+                                    builder.show();
+                                    txt1=(TextView)view2.findViewById(R.id.idnomalu);
+                                    txt2=(TextView)view2.findViewById(R.id.idapealu);
+                                    txt1.setText(userName);
+                                    txt2.setText(ape);
+
 
                                 }
                             });
@@ -166,12 +188,12 @@ String idtutor;
     }
 
     public static class ChatsVH extends RecyclerView.ViewHolder{
-        TextView titulo, user_presence;
+        TextView nombre, user_presence;
 
-        String ideevento;
+        String apellido;
         public ChatsVH(View itemView) {
             super(itemView);
-            titulo = itemView.findViewById(R.id.idnombrealu);
+            nombre = itemView.findViewById(R.id.idnombrealu);
 
         }
     }

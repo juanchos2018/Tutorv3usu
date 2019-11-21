@@ -12,33 +12,58 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="45dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-              >
-                <TextView
-                    android:id="@+id/idnombretutor"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="240dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/idnombretutor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:hint="nombre tutor">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="nombre tutor"
-                    android:layout_marginLeft="10dp"
-                  android:layout_gravity="center">
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/idstream"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
 
-                </TextView>
+                        android:src="@drawable/cam">
 
-                <ImageView
-                    android:id="@+id/idstream"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                   android:layout_marginLeft="240dp"
-                    android:src="@drawable/cam">
+                    </ImageView>
 
-                </ImageView>
+                    <ImageView
+                        android:id="@+id/idllamada"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+
+                        android:src="@drawable/cel">
+
+                    </ImageView>
+                </LinearLayout>
+
             </LinearLayout>
-
-
 
         </androidx.cardview.widget.CardView>
     </LinearLayout>

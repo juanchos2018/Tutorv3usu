@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.tutorv3usu.Chat.Buscar;
 import com.example.tutorv3usu.Fragment.RequestsFragment;
 import com.example.tutorv3usu.FragmentAlumno.ChatFragment;
 import com.example.tutorv3usu.FragmentAlumno.ReunionesFragment;
@@ -60,20 +61,8 @@ public class InicioAlumno extends AppCompatActivity  implements ChatFragment.OnF
             userDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(user_uID);
         }
 
-
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
 
         mToolbar = findViewById(R.id.main_page_toolbar1);
         setSupportActionBar(mToolbar);
@@ -137,10 +126,10 @@ public class InicioAlumno extends AppCompatActivity  implements ChatFragment.OnF
            // startActivity(intent);
         }
 
-     //   if (item.getItemId() == R.id.profile_settings){
-       //     Intent intent =  new Intent(MainActivity.this, SettingsActivity.class);
-         //   startActivity(intent);
-        //}
+        if (item.getItemId() == R.id.menu_search1){
+            Intent intent =  new Intent(InicioAlumno.this, Buscar.class);
+            startActivity(intent);
+        }
 
 
         return  true;

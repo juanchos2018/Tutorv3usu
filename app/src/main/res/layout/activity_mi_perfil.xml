@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.tutorv3usu.VistaTutor.MiPerfil">
-    <include
-        layout="@layout/all_app_bar_layout"
-        android:id="@+id/profile_settings_appbar"/>
+
 
     <TextView
         android:visibility="gone"
@@ -70,7 +68,7 @@
                         android:id="@+id/userProfileStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Status Available"
+                        android:text="Estado"
                         android:textStyle="normal"
                         android:layout_marginTop="2dp"
                         />
@@ -92,7 +90,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Personal Information"
+                    android:text="Informacion Personal"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="normal"
                     android:textSize="20sp"/>
@@ -110,33 +108,9 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" Nombre:"
-                        android:padding="3dp"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
-                        />
-                    <EditText
-                        android:id="@+id/user_nickname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="birth name/ surname"
-                        android:drawablePadding="3dp"
-                        android:inputType="textNoSuggestions"
-                        android:backgroundTint="@color/dark_gray"
-                        />
+
                 </LinearLayout>
-                <EditText
-                    android:id="@+id/profession"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint=" Profession"
-                    android:drawableLeft="@drawable/ic_work"
-                    android:drawablePadding="3dp"
-                    android:backgroundTint="@color/dark_gray"
-                    />
+
                 <EditText
                     android:id="@+id/userEmail"
                     android:layout_width="match_parent"

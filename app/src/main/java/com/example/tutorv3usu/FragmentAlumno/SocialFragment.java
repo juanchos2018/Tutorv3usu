@@ -2,7 +2,9 @@ package com.example.tutorv3usu.FragmentAlumno;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,6 +41,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import io.reactivex.functions.Cancellable;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,6 +73,7 @@ public class SocialFragment extends Fragment {
     public FirebaseUser currentUser;
     RecyclerView recycler;
     private OnFragmentInteractionListener mListener;
+    TextView te1,te2,te3,te4;
 
     public SocialFragment() {
         // Required empty public constructor
@@ -138,14 +143,14 @@ public class SocialFragment extends Fragment {
 
         return vista;
     }
-
+    public String name;
     @Override
     public void onStart() {
         super.onStart();
 
-
         FirebaseRecyclerOptions<Tutores> recyclerOptions = new FirebaseRecyclerOptions.Builder<Tutores>()
                 .setQuery(reference2, Tutores.class).build();
+
         FirebaseRecyclerAdapter<Tutores,Items> adapter =new FirebaseRecyclerAdapter<Tutores, Items>(recyclerOptions) {
             @Override
             protected void onBindViewHolder(@NonNull final Items items, final int i, @NonNull Tutores tutores) {
@@ -157,15 +162,57 @@ public class SocialFragment extends Fragment {
 
                         if (dataSnapshot.exists()){
                             final String nombretutor=dataSnapshot.child("idtutor").getValue().toString();
-                            items.txtnombre.setText(nombretutor);
-                            Toast.makeText(getContext(), "lelga qui", Toast.LENGTH_SHORT).show();
+                             name=dataSnapshot.child("nombre").getValue().toString();
+                            final   String   celular=dataSnapshot.child("celular").getValue().toString();
+                             final   String   correo=dataSnapshot.child("correo").getValue().toString();
+                          //  Toast.makeText(getContext(), nombretutor, Toast.LENGTH_SHORT).show();
+                            items.txtnombre.setText(name);
+                         //   Toast.makeText(getContext(), "lelga qui", Toast.LENGTH_SHORT).show();
                             items.imgcam.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Toast.makeText(getContext(), "nom" + nombretutor, Toast.LENGTH_SHORT).show();
+                                    Intent intent= new Intent(getContext(),Stream.class);
+                                    startActivity(intent);
+                                   // Toast.makeText(getContext(), "nom" + nombretutor, Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            items.imgcel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                                    intent.setData(Uri.parse("tel:"+celular));
+                                   startActivity(intent);
+                                }
+                            });
+                            items.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
+                                    final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                    LayoutInflater inflater = getActivity().getLayoutInflater();
+                                    View view2 = inflater.inflate(R.layout.dialogo_detalle_tutor, null);
+                                    builder.setTitle("Tutor");
+                                    builder.setView(view2)
+                                            .setNegativeButton("cerrar", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                }
+                                            });
+
+
+                                    builder.show();
+                                    te1=(TextView)view2.findViewById(R.id.idnom1);
+                                    te2=(TextView)view2.findViewById(R.id.idape1);
+                                    te3=(TextView)view2.findViewById(R.id.idtelefono1);
+                                    te4=(TextView)view2.findViewById(R.id.idcorreo1);
+
+                                    te1.setText(name);
+                                    te3.setText(celular);
+                                    te4.setText(correo);
+
+                                }
+                            });
                         }
                     }
 
@@ -194,11 +241,13 @@ public class SocialFragment extends Fragment {
     public  static class Items extends RecyclerView.ViewHolder{
 
         TextView txtnombre;
-        ImageView imgcam;
+        ImageView imgcam,imgcel;
         public Items(@NonNull View itemView) {
             super(itemView);
             txtnombre=(TextView)itemView.findViewById(R.id.idnombretutor);
             imgcam=(ImageView)itemView.findViewById(R.id.idstream);
+            imgcel=(ImageView)itemView.findViewById(R.id.idllamada);
+
 
 
         }

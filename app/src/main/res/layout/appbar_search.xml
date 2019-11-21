@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/backButton"
-        android:hint="Search a name"
+        android:hint="Buscar po nombre"
         android:inputType="textCapWords"
         app:autoFill="false"
         app:autoSave="true"

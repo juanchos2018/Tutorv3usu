@@ -109,6 +109,9 @@ public class Eventos_Fragment extends Fragment {
     ArrayList<Reuniones> listaReunion;
     AdaptadorReunion adapterreunion;
 
+    String array1[]=new String[100];
+    int contador=0;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -162,7 +165,7 @@ public class Eventos_Fragment extends Fragment {
             String user_uID = mAuth.getCurrentUser().getUid();
             idtutor=user_uID;
             userDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(user_uID);
-            reference2= FirebaseDatabase.getInstance().getReference("Reuniones").child(user_uID);;
+            reference3= FirebaseDatabase.getInstance().getReference("MisReuniones").child(user_uID);;
 
 
             // Toast.makeText(getContext(), "id e " +user_uID , Toast.LENGTH_SHORT).show();
@@ -182,7 +185,11 @@ public class Eventos_Fragment extends Fragment {
                         .setPositiveButton("REGISTRAR", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                        Registrar(idtutor,etitulo.getText().toString(),spinercursos.getSelectedItem().toString(),elugar.getText().toString(),efecha.getText().toString(),edescripcion.getText().toString());
+
+                                int  pos=spinercursos.getSelectedItemPosition();
+                                String ides =array1[pos];
+
+                             Registrar(ides,idtutor,etitulo.getText().toString(),spinercursos.getSelectedItem().toString(),elugar.getText().toString(),efecha.getText().toString(),edescripcion.getText().toString());
                             }
                         });
 
@@ -202,6 +209,11 @@ public class Eventos_Fragment extends Fragment {
                             listaCursos.add(artist);
 
                             String curo=postSnapshot.child("curso").getValue().toString();
+                            String id=postSnapshot.child("id").getValue().toString();
+
+                            array1[contador] = id;
+                            contador++;
+                            Log.e("id -",id);
                             listaCursos2=new ArrayList<String>();
                             listaCursos2.add(curo);
                             Log.e("curso",""+ curo);
@@ -209,8 +221,6 @@ public class Eventos_Fragment extends Fragment {
 
                         adaptercursos2= new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,listaCursos2);
                         spinercursos.setAdapter(adaptercursos2);
-
-
                     }
 
                     @Override
@@ -218,7 +228,6 @@ public class Eventos_Fragment extends Fragment {
 
                     }
                 });
-
 
                 efecha.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -266,7 +275,7 @@ public class Eventos_Fragment extends Fragment {
 
         */
        FirebaseRecyclerOptions<Reuniones> recyclerOptions = new FirebaseRecyclerOptions.Builder<Reuniones>()
-                .setQuery(reference2, Reuniones.class)
+                .setQuery(reference3, Reuniones.class)
                 .build();
 
         FirebaseRecyclerAdapter<Reuniones, ChatsVH> adapter2 = new FirebaseRecyclerAdapter<Reuniones, ChatsVH>(recyclerOptions) {
@@ -275,7 +284,7 @@ public class Eventos_Fragment extends Fragment {
 
                 final String userID = getRef(position).getKey();
 
-                reference2.child(userID).addValueEventListener(new ValueEventListener() {
+                reference3.child(userID).addValueEventListener(new ValueEventListener() {
 
                     @Override
                     public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
@@ -330,7 +339,7 @@ public class Eventos_Fragment extends Fragment {
         }
     }
 
-    public void Registrar(String id ,String titulo,String curso,String lugar,String fecha,String descriocion){
+    public void Registrar(String idss, String id ,String titulo,String curso,String lugar,String fecha,String descriocion){
 
 
       //  Toast.makeText(getContext(), "es " + id, Toast.LENGTH_SHORT).show();
@@ -345,10 +354,15 @@ public class Eventos_Fragment extends Fragment {
         reference.child("fecha").setValue(fecha);
         reference.child("descripcion").setValue(descriocion);
 */
-        reference= FirebaseDatabase.getInstance().getReference("Reuniones").child(id);;
+        //reference= FirebaseDatabase.getInstance().getReference("Reuniones").child(id);;
+        reference= FirebaseDatabase.getInstance().getReference("Reuniones").child(idss);
+        reference3 =FirebaseDatabase.getInstance().getReference("MisReuniones").child(id);
         String ids  = reference.push().getKey();
-        Reuniones track = new Reuniones(ids, titulo,curso,lugar,fecha,descriocion);
+        Reuniones track = new Reuniones(idss, titulo,curso,lugar,fecha,descriocion);
+
         reference.child(ids).setValue(track);
+        reference3.child(ids).setValue(track);
+
 
         Toast.makeText(getContext(), "Registrado", Toast.LENGTH_SHORT).show();
 

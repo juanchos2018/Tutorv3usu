@@ -55,13 +55,13 @@ public class MensajeAdaptador  extends RecyclerView.Adapter<MensajeAdaptador.Mes
         String from_user_ID = message.getFrom();
         String from_message_TYPE = message.getType();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(from_user_ID);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(from_user_ID);
         databaseReference.keepSynced(true); // for offline
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    String userName = dataSnapshot.child("user_name").getValue().toString();
+                    String userName = dataSnapshot.child("nombre").getValue().toString();
                     String userProfileImage = dataSnapshot.child("user_thumb_image").getValue().toString();
                     //
                     Picasso.get()

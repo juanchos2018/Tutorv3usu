@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VistaAlumno.ChatGrupal2"></activity>
+        <activity android:name=".VistaAlumno.MisReunionesAlumno"></activity>
+        <activity android:name=".VistaTutor.Archivos" />
+        <activity android:name=".VistaAlumno.InfoGrupo" />
+        <activity android:name=".VistaAlumno.ChatGrupal2" />
         <activity android:name=".ChatGrupal" />
         <activity android:name=".VistaTutor.Horario" />
         <activity android:name=".VistaTutor.DetalleAlumnos" />

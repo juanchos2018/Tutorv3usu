@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:title="Info Grupo"
+        android:id="@+id/inforgrupo"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="Archivos"
+        android:id="@+id/idarchivos"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="Miebros"
+        android:id="@+id/idmienbros"
+        app:showAsAction="never"
+        />
+</menu>
