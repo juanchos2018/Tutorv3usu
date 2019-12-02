@@ -4,27 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tutorv3usu.VistaTutor.Horario">
+    tools:context="com.example.tutorv3usu.VistaTutor.ReunionesCurso">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <sun.bob.mcalendarview.MCalendarView
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            tools:context=".MainActivity"
-            android:id="@+id/calendar"/>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/idrecylcerreunionescursotutor2"
+            android:id="@+id/idrecylcerreunionescursotutor"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </androidx.recyclerview.widget.RecyclerView>
 
-
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

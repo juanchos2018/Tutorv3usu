@@ -2,6 +2,7 @@ package com.example.tutorv3usu.FragmentTutor;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -17,7 +18,9 @@ import android.widget.TextView;
 
 import com.example.tutorv3usu.Clases.Alu;
 import com.example.tutorv3usu.ClasesTutor.Cursos;
+import com.example.tutorv3usu.ClasesTutor.Reuniones;
 import com.example.tutorv3usu.R;
+import com.example.tutorv3usu.VistaTutor.ReunionesCurso;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -120,19 +123,23 @@ public class Cursos_Tutores_Fragment extends Fragment {
             protected void onBindViewHolder(@NonNull final ChatsVH holder, int position, @NonNull Cursos model) {
 
                 final String userID = getRef(position).getKey();
-
                 reference2.child(userID).addValueEventListener(new ValueEventListener() {
-
                     @Override
                     public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()){
 
                             final String userName = dataSnapshot.child("curso").getValue().toString();
+                            final String idcurso = dataSnapshot.child("id").getValue().toString();
                             holder.titulo.setText(userName);
                             holder.itemView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
 
+                                    Intent intent  =new  Intent(getContext(), ReunionesCurso.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("id5",idcurso);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
                                 }
                             });
 

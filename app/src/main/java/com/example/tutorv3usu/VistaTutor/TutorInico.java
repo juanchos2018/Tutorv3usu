@@ -80,43 +80,7 @@ public class TutorInico extends AppCompatActivity {
             reference2= FirebaseDatabase.getInstance().getReference("Tutorcurso").child(user_uID);
             reference3= FirebaseDatabase.getInstance().getReference("Reuniones").child(user_uID);
         }
-     //   reference= FirebaseDatabase.getInstance().getReference("Tutorcurso").child(user_uID);
 
-     /*   imgsalir=(ImageView)findViewById(R.id.imsalir);
-        imgsalir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(TutorInico.this);
-                View v = LayoutInflater.from(TutorInico.this).inflate(R.layout.salir, null);
-
-                ImageButton imageButton = v.findViewById(R.id.logoutImg);
-                imageButton.setImageResource(R.drawable.logout);
-                builder.setCancelable(true);
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.setPositiveButton("Dese Salir", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (currentUser != null){
-                            userDatabaseReference.child("active_now").setValue(ServerValue.TIMESTAMP);
-                        }
-                        mAuth.signOut();
-                        logOutUser();
-                    }
-                });
-                builder.setView(v);
-                builder.show();
-            }
-        });
-
-
-      */
 
     }
     @Override

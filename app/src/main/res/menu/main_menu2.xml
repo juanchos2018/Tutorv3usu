@@ -8,8 +8,6 @@
         android:icon="@drawable/ic_search_black_24dp"
         app:showAsAction="always"/>
 
-
-
     <item
         android:title="Salir"
         android:id="@+id/idsalir2"

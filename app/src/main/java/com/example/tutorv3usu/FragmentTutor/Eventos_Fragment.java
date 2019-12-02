@@ -156,7 +156,7 @@ public class Eventos_Fragment extends Fragment {
         recycler=vista.findViewById(R.id.recyclereventos);
         listaCursos=new ArrayList<>();
 
-
+        listaCursos2=new ArrayList<String>();
         recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         listaReunion= new ArrayList<>();
         listaCursos2 = new ArrayList<>();
@@ -194,11 +194,13 @@ public class Eventos_Fragment extends Fragment {
                         });
 
                 builder.show();
+
                 etitulo=(EditText)view2.findViewById(R.id.idtutulo);
                spinercursos=(Spinner)view2.findViewById(R.id.idcurso2);
                 elugar=(EditText)view2.findViewById(R.id.idlugar);
                 efecha=(EditText)view2.findViewById(R.id.idfecha);
                 edescripcion=(EditText)view2.findViewById(R.id.iddescripcion);
+
                 reference2= FirebaseDatabase.getInstance().getReference("Tutorcurso").child(idtutor);
                 reference2.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -210,13 +212,13 @@ public class Eventos_Fragment extends Fragment {
 
                             String curo=postSnapshot.child("curso").getValue().toString();
                             String id=postSnapshot.child("id").getValue().toString();
-
+                            Log.e("cursos",curo);
                             array1[contador] = id;
                             contador++;
-                            Log.e("id -",id);
-                            listaCursos2=new ArrayList<String>();
+                          //  Log.e("id -",id);
+
                             listaCursos2.add(curo);
-                            Log.e("curso",""+ curo);
+                         //   Log.e("curso",""+ curo);
                         }
 
                         adaptercursos2= new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,listaCursos2);

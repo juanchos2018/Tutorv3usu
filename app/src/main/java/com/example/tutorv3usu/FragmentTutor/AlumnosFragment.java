@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tutorv3usu.AdapterTutor.AdaptadorReunion;
@@ -135,8 +137,9 @@ String idtutor;
 
                             final String userName = dataSnapshot.child("nombre").getValue().toString();
                             final String ape = dataSnapshot.child("apellido").getValue().toString();
-
+                            final String cel = dataSnapshot.child("telefono").getValue().toString();
                             holder.nombre.setText(userName);
+                            holder.txtaellido.setText(ape);
                             holder.apellido=ape;
 
                             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -158,9 +161,21 @@ String idtutor;
                                     builder.show();
                                     txt1=(TextView)view2.findViewById(R.id.idnomalu);
                                     txt2=(TextView)view2.findViewById(R.id.idapealu);
+                                    txt3=(TextView)view2.findViewById(R.id.idtelefonoalu);
                                     txt1.setText(userName);
                                     txt2.setText(ape);
+                                    txt3.setText(cel);
 
+
+                                }
+                            });
+
+                            holder.imageViewcelular.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                                    intent.setData(Uri.parse("tel:"+cel));
+                                    holder.imageViewcelular.getContext().startActivity(intent);
 
                                 }
                             });
@@ -188,12 +203,15 @@ String idtutor;
     }
 
     public static class ChatsVH extends RecyclerView.ViewHolder{
-        TextView nombre, user_presence;
-
+        TextView nombre, txtaellido;
+        ImageView imageViewcelular;
+String telefono;
         String apellido;
         public ChatsVH(View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.idnombrealu);
+            txtaellido = itemView.findViewById(R.id.idapealu);
+            imageViewcelular=(ImageView)itemView.findViewById(R.id.idcelular11);
 
         }
     }

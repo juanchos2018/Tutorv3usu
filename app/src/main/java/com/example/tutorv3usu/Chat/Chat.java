@@ -1,5 +1,6 @@
 package com.example.tutorv3usu.Chat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -27,6 +29,9 @@ import com.example.tutorv3usu.Adaptadores.MensajeAdaptador;
 import com.example.tutorv3usu.Modelo.Mensajes;
 import com.example.tutorv3usu.R;
 import com.example.tutorv3usu.Util.UserLastSeenTime;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +42,7 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -238,6 +244,69 @@ public class Chat extends AppCompatActivity {
 
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //  For image sending
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_PICK_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            Uri imageUri = data.getData();
+
+            // image message sending size compressing will be placed below
+
+            final String message_sender_reference = "messages/" + messageSenderId + "/" + messageReceiverID;
+            final String message_receiver_reference = "messages/" + messageReceiverID + "/" + messageSenderId;
+
+            DatabaseReference user_message_key = rootReference.child("messages").child(messageSenderId).child(messageReceiverID).push();
+            final String message_push_id = user_message_key.getKey();
+
+            final StorageReference file_path = imageMessageStorageRef.child(message_push_id + ".jpg");
+
+            UploadTask uploadTask = file_path.putFile(imageUri);
+            Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task){
+                    if (!task.isSuccessful()){
+                        SweetToast.error(Chat.this, "Error: " + task.getException().getMessage());
+                    }
+                    download_url = file_path.getDownloadUrl().toString();
+                    return file_path.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()){
+                        if (task.isSuccessful()){
+                            download_url = task.getResult().toString();
+                            //Toast.makeText(ChatActivity.this, "From ChatActivity, link: " +download_url, Toast.LENGTH_SHORT).show();
+
+                            HashMap<String, Object> message_text_body = new HashMap<>();
+                            message_text_body.put("message", download_url);
+                            message_text_body.put("seen", false);
+                            message_text_body.put("type", "image");
+                            message_text_body.put("time", ServerValue.TIMESTAMP);
+                            message_text_body.put("from", messageSenderId);
+
+                            HashMap<String, Object> messageBodyDetails = new HashMap<>();
+                            messageBodyDetails.put(message_sender_reference + "/" + message_push_id, message_text_body);
+                            messageBodyDetails.put(message_receiver_reference + "/" + message_push_id, message_text_body);
+
+                            rootReference.updateChildren(messageBodyDetails, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                    if (databaseError != null){
+                                        Log.e("from_image_chat: ", databaseError.getMessage());
+                                    }
+                                    input_user_message.setText("");
+                                }
+                            });
+                            Log.e("tag", "Image sent successfully");
+                        } else{
+                            SweetToast.warning(Chat.this, "Failed to send image. Try again");
+                        }
+                    }
+                }
+            });
+        }
+    }
 
     private void sendMessage() {
         String message = input_user_message.getText().toString();

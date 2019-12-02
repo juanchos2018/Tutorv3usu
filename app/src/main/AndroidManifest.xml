@@ -4,12 +4,15 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VistaAlumno.MisReunionesAlumno"></activity>
+        <activity android:name=".VistaTutor.ReunionesCurso"></activity>
+        <activity android:name=".VistaAlumno.MisReunionesAlumno" />
         <activity android:name=".VistaTutor.Archivos" />
         <activity android:name=".VistaAlumno.InfoGrupo" />
         <activity android:name=".VistaAlumno.ChatGrupal2" />
@@ -63,7 +66,8 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login" />
+        <activity android:name=".Login"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize" />

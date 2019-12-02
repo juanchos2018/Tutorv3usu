@@ -109,6 +109,7 @@ public class Buscar extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull SearchPeopleVH holder, final int position, @NonNull Usuaros model) {
                 holder.name.setText(model.getNombre());
                 holder.status.setText(model.getApellido());
+                //  final  String celular =model.getTelefono();
 
                 Picasso.get()
                         .load(model.getUser_image())
